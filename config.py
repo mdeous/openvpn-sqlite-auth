@@ -3,3 +3,4 @@
 DB_PATH = '/tmp/openvpn-auth-test.sqlite'
 USERNAME_LENGTH_MIN = 3
 PASSWORD_LENGTH_MIN = 8
+HASH_ALGORITHM = 'sha256'

@@ -18,6 +18,6 @@ if not os.path.exists(DB_PATH):
 username = sys.argv[1]
 db = sqlite3.connect(DB_PATH)
 cursor = db.cursor()
-cursor.execute("DELETE FROM users WHERE username = ?", (username,))
+cursor.execute("DELETE FROM users WHERE username = ?;", (username,))
 db.commit()
 print "* User '%s' successfully removed" % username

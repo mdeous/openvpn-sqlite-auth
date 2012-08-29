@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import hashlib
 import os
 import sqlite3
 import sys
 from getpass import getpass
-from hashlib import sha256
 
-from config import DB_PATH, USERNAME_LENGTH_MIN, PASSWORD_LENGTH_MIN
+from config import DB_PATH, USERNAME_LENGTH_MIN, PASSWORD_LENGTH_MIN, HASH_ALGORITHM
 
 
 if len(sys.argv) != 2:
@@ -15,6 +15,11 @@ if len(sys.argv) != 2:
     sys.exit(1)
 if not os.path.exists(DB_PATH):
     print "ERROR: Database not found: %s" % DB_PATH
+
+hash_func = getattr(hashlib, HASH_ALGORITHM, None)
+if hash_func is None:
+    print "ERROR: Hashing algorithm '%s' not found" % HASH_ALGORITHM
+    sys.exit(2)
 
 username = sys.argv[1]
 if len(username) < USERNAME_LENGTH_MIN:
@@ -33,7 +38,7 @@ while not password_ok:
     else:
         print "ERROR: passwords don't match"
 
-password = sha256(password).hexdigest()
+password = hash_func(password).hexdigest()
 
 db = sqlite3.connect(DB_PATH)
 cursor = db.cursor()
