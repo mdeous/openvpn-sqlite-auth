@@ -11,9 +11,15 @@ using SQLite to store credentials.
 
 - Edit the `config.py` file and set the appropriates values
     - `DB_PATH`: Path where the SQLite database should be stored.
-    - `USERNAME_LENGTH_MIN`: Minimum length usernames should be.
     - `PASSWORD_LENGTH_MIN`: Minimum length passwords should be.
-    - `HASH_ALGORITHM`: Algorithm to use when hashing passwords.
+    - `HASH_ALGORITHM`: Algorithm to use when hashing passwords. Can be one of:
+        - md5
+        - sha1
+        - sha224
+        - sha256
+        - sha384
+        - sha512
+        - or any other algorithm supported by the OpenSSL library used by your Python installation.
 
 - Edit your OpenVPN server configuration file and add this line:
 
