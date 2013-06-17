@@ -7,7 +7,7 @@ import sqlite3
 import sys
 from getpass import getpass
 
-from config import DB_PATH, USERNAME_LENGTH_MIN, PASSWORD_LENGTH_MIN, HASH_ALGORITHM
+from config import DB_PATH, PASSWORD_LENGTH_MIN, HASH_ALGORITHM
 
 
 if len(sys.argv) != 2:
@@ -22,10 +22,6 @@ if hash_func is None:
     sys.exit(2)
 
 username = sys.argv[1]
-if len(username) < USERNAME_LENGTH_MIN:
-    print "ERROR: username must be at least %d characters long" % USERNAME_LENGTH_MIN
-    sys.exit(2)
-
 password_ok = False
 while not password_ok:
     password = getpass()
