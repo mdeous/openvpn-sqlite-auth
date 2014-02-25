@@ -24,6 +24,7 @@ using SQLite to store credentials.
 - Edit your OpenVPN server configuration file and add this line:
 
     auth-user-pass-verify /etc/openvpn/openvpn-sqlite-auth/user-auth.py via-env
+    script-security 3 system
 
 - Edit your OpenVPN user configuration file and add this line:
 
