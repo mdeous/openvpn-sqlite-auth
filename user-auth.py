@@ -18,6 +18,6 @@ result = cursor.fetchone()
 if result is None:
     sys.exit(1)
 username, password = result
-if hash_func(os.environ['password']).hexdigest() != password:
+if hash_func(os.environ['password'].encode("utf-8")).hexdigest() != password:
     sys.exit(1)
 sys.exit(0)
