@@ -34,7 +34,7 @@ while not password_ok:
     else:
         print("ERROR: passwords don't match")
 
-password = hash_func(password).hexdigest()
+password = hash_func(password.encode("UTF-8")).hexdigest()
 
 db = sqlite3.connect(DB_PATH)
 cursor = db.cursor()
